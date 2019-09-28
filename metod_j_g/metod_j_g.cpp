@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <math.h>
 #include "func_for_j_g.h"
 
 using namespace std;
@@ -6,7 +7,7 @@ using namespace std;
 int main()
 {
 	float** a; unsigned n, m, i, j; float b[10];
-	unsigned id_row, id_row_old = 1; unsigned k, lead;
+	unsigned id_row, id_row_old = 1; int k, lead, g=0;
 	setlocale(LC_ALL, "Rus");
 
 	cout << "Введите количество строк матрицы: ";
@@ -27,8 +28,8 @@ int main()
 	cout << endl;
 
 	for (j = 0; j < n; j++) {
-		for (i = 0; i < n; i++) {
-			if (a[i][j] > 0)
+		for (i = g; i < n; i++) {
+			if (a[i][j] != 0)
 			{
 				id_row = i;
 				unsigned flag = check_line(id_row, a, id_row_old);
@@ -38,6 +39,7 @@ int main()
 					for (k = j; k < n; k++)
 						a[i][k] /= lead;
 					b[i] /= lead;
+					g = i;
 					i = n;
 				}
 			}
