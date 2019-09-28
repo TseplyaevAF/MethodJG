@@ -26,12 +26,8 @@ void print_matrix(unsigned row, unsigned column, float **a) {
 
 //проверка на вхождение строки в массив
 bool check_line(unsigned id_row, float** matrix, unsigned old) {
-	if (old == 0)
-	{
-		old = id_row;
+	if (old != id_row) 
 		return 0;
-	}
-	if (old != id_row)
-		return 0; else
+ else
 		return 1;
 }
