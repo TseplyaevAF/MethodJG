@@ -15,7 +15,7 @@ float** create_matrix(unsigned row, unsigned column) {
 
 	return a;
 }
-
+//вывод матрицы
 void print_matrix(unsigned row, unsigned column, float **a) {
 	for (unsigned i = 0; i < row; i++) {
 		for (unsigned j = 0; j < column; j++)
@@ -24,3 +24,14 @@ void print_matrix(unsigned row, unsigned column, float **a) {
 	}
 }
 
+//проверка на вхождение строки в массив
+bool check_line(unsigned id_row, float** matrix, unsigned old) {
+	if (old == 0)
+	{
+		old = id_row;
+		return 0;
+	}
+	if (old != id_row)
+		return 0; else
+		return 1;
+}
