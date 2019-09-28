@@ -22,9 +22,9 @@ int main()
 	}
 
 	print_matrix(n, m, a);
-
 	for (i = 0; i < n; i++)
 		cout << b[i] << "\n";
+	cout << endl;
 
 	for (j = 0; j < n; j++) {
 		for (i = 0; i < n; i++) {
@@ -37,12 +37,16 @@ int main()
 					lead = a[i][j];
 					for (k = j; k < n; k++)
 						a[i][k] /= lead;
-					b[k] /= lead;
+					b[i] /= lead;
 					i = n;
 				}
 			}
 		}
 	}
+
+	print_matrix(n, m, a);
+	for (i = 0; i < n; i++)
+		cout << b[i] << "\n";
 
 	for (i = 0; i < n; i++)
 		delete[] a[i];
