@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-	float** a; unsigned n, m, i, j; float b[10];
-	unsigned id_row, id_row_old = 1; int k, lead, g=0;
+	float** a; unsigned n, m, i, j; float b[10]; float mass[10][10];
+	unsigned id_row, id_row_old = 1; int k, g = 0; float lead;
 	setlocale(LC_ALL, "Rus");
 
 	cout << "Введите количество строк матрицы: ";
@@ -39,7 +39,26 @@ int main()
 					for (k = j; k < n; k++)
 						a[i][k] /= lead;
 					b[i] /= lead;
+					
 					g = i;
+					for (k = 0; k < n; k++)
+					for (int w = 0; w < n; w++)	 {
+							float buf = a[k][w];//сохраняем строку, которую будем умножать
+							if ((w == j) && (k != g)){
+								//a[k][w] = a[i][j];
+								int p = k; int c = w;
+								//a[g][c] = lead;
+								a[p][c] = buf;
+							
+									for (c = w; c < n; c++) {
+										a[p][c] -= buf * a[g][c];
+									}
+								
+								b[k] -= buf * b[i];
+
+						}
+					}
+
 					i = n;
 				}
 			}
