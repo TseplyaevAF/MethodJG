@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	float** a; unsigned n, m, i, j; float b[10]; float mass[10][10];
+	float** a; unsigned n, m, i, j; float b[10];
 	unsigned id_row, id_row_old = 1; int k, g = 0; float lead;
 	setlocale(LC_ALL, "Rus");
 
@@ -26,29 +26,28 @@ int main()
 	for (i = 0; i < n; i++)
 		cout << b[i] << "\n";
 	cout << endl;
-
+	//поиск ненулевого элемента в столбце
 	for (j = 0; j < n; j++) {
 		for (i = g; i < n; i++) {
 			if (a[i][j] != 0)
 			{
-				id_row = i;
+				id_row = i;//запоминаем номер строки
 				unsigned flag = check_line(id_row, a, id_row_old);
-				if (flag == 0) {
+				if (flag == 0) {//если текущая строка не была использована
 					id_row_old = id_row;
-					lead = a[i][j];
-					for (k = j; k < n; k++)
-						a[i][k] /= lead;
+					lead = a[i][j];//выбираем первый входящий в нее элемент
+					for (k = j; k < n; k++) 
+						a[i][k] /= lead; //делим всю строку на него
 					b[i] /= lead;
 					
-					g = i;
+					g = i; 
+					//вычитание строк
 					for (k = 0; k < n; k++)
 					for (int w = 0; w < n; w++)	 {
-							float buf = a[k][w];//сохраняем строку, которую будем умножать
+							float buf = a[k][w];//сохраняем элемент строки, который будет множителем 
 							if ((w == j) && (k != g)){
-								//a[k][w] = a[i][j];
 								int p = k; int c = w;
-								//a[g][c] = lead;
-								a[p][c] = buf;
+								a[p][c] = buf;//сохраняем строку
 							
 									for (c = w; c < n; c++) {
 										a[p][c] -= buf * a[g][c];
@@ -59,19 +58,21 @@ int main()
 						}
 					}
 
-					i = n;
+					i = n;//для перехода к след. столбцу
 				}
 			}
 		}
 	}
 
-	print_matrix(n, m, a);
-	for (i = 0; i < n; i++)
-		cout << b[i] << "\n";
+	print_matrix(n, m, a); //вывод матрицы
+	for (i = 0; i < n; i++)//вывод результата
+		cout << "x" << i+1 << " = " << b[i] << "\n";
 
 	for (i = 0; i < n; i++)
 		delete[] a[i];
 	delete[] a;
+
+	system("pause");
 
 	return 0;
 }
