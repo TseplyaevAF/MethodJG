@@ -1,12 +1,12 @@
 #include <iostream>
 
 //создание матрицы
-float** create_matrix(unsigned row, unsigned column) {
-	float** a = new float*[row];
+float** create_matrix(unsigned n) {
+	float** a = new float*[n];
 
-	for (unsigned i = 0; i < row; i++) {
-		a[i] = new float[column];
-		for (unsigned j = 0; j < column; j++) {
+	for (unsigned i = 0; i < n; i++) {
+		a[i] = new float[n];
+		for (unsigned j = 0; j < n; j++) {
 			std::cout << "a[" << i << ", " << j << "] = ";
 			std::cin >> a[i][j];
 		}
@@ -16,16 +16,16 @@ float** create_matrix(unsigned row, unsigned column) {
 	return a;
 }
 //вывод матрицы
-void print_matrix(unsigned row, unsigned column, float **a) {
-	for (unsigned i = 0; i < row; i++) {
-		for (unsigned j = 0; j < column; j++)
+void print_matrix(unsigned n, float **a) {
+	for (unsigned i = 0; i < n; i++) {
+		for (unsigned j = 0; j < n; j++)
 			std::cout << a[i][j] << " ";
 		std::cout << std::endl;
 	}
 }
 
 //проверка на вхождение строки в массив
-bool check_line(unsigned id_row, float** matrix, unsigned old) {
+bool check_line(unsigned id_row, unsigned old) {
 	if (old != id_row) 
 		return 0;
  else

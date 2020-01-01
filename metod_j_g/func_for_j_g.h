@@ -1,12 +1,9 @@
 #pragma once
 //создание матрицы
-float ** create_matrix(unsigned row, unsigned column);
+float ** create_matrix(unsigned n);
 
 //вывод матрицы
-void print_matrix(unsigned row, unsigned column, float ** a);
+void print_matrix(unsigned n, float ** a);
 
 //проверка на вхождение строки в массив
-bool check_line(unsigned id_row, float **matrix, unsigned old);
-
-//вычитание строк
-float vich_strok(float **matrix, float a_div_lead, unsigned id_row);
+bool check_line(unsigned id_row, unsigned old);

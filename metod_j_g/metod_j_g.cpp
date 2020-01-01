@@ -6,15 +6,13 @@ using namespace std;
 
 int main()
 {
-	float** a; unsigned n, m, i, j; float b[10];
+	float** a; unsigned n, i, j; float b[10];
 	unsigned id_row, id_row_old = 1; int k, g = 0; float lead;
 	setlocale(LC_ALL, "Rus");
 
-	cout << "Введите количество строк матрицы: ";
+	cout << "Введите порядок матрицы: ";
 	cin >> n;
-	cout << "Введите количество столбцов матрицы: ";
-	cin >> m;
-	a = create_matrix(n, m);
+	a = create_matrix(n);
 
 	//заполнение столбца свободных членов
 	for (i = 0; i < n; i++) {
@@ -22,7 +20,7 @@ int main()
 		cin >> b[i];
 	}
 
-	print_matrix(n, m, a);
+	print_matrix(n, a);
 	for (i = 0; i < n; i++)
 		cout << b[i] << "\n";
 	cout << endl;
@@ -32,7 +30,7 @@ int main()
 			if (a[i][j] != 0)
 			{
 				id_row = i;//запоминаем номер строки
-				unsigned flag = check_line(id_row, a, id_row_old);
+				unsigned flag = check_line(id_row, id_row_old);
 				if (flag == 0) {//если текущая строка не была использована
 					id_row_old = id_row;
 					lead = a[i][j];//выбираем первый входящий в нее элемент
@@ -64,7 +62,7 @@ int main()
 		}
 	}
 
-	print_matrix(n, m, a); //вывод матрицы
+	print_matrix(n, a); //вывод матрицы
 	for (i = 0; i < n; i++)//вывод результата
 		cout << "x" << i+1 << " = " << b[i] << "\n";
 
